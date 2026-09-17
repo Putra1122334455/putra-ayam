@@ -1,0 +1,7806 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LOD Academy — Mobile Legends Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* =====================================================
+       GLOBAL
+    ===================================================== */
+
+    :root {
+      --bg: #050816;
+      --bg2: #0a1028;
+      --card: rgba(15, 24, 55, .76);
+
+      --cyan: #00eaff;
+      --blue: #3478ff;
+      --purple: #9b5cff;
+      --gold: #ffd447;
+      --green: #48ffad;
+      --red: #ff496d;
+
+      --text: #f3f7ff;
+      --muted: #91a0c0;
+
+      --border: rgba(255,255,255,.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(0,234,255,.08),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(155,92,255,.12),
+          transparent 30%
+        ),
+        var(--bg);
+
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+
+    /* =====================================================
+       PARTICLES
+    ===================================================== */
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+
+      width: 3px;
+      height: 3px;
+
+      border-radius: 50%;
+
+      background: var(--cyan);
+
+      box-shadow:
+        0 0 15px var(--cyan);
+
+      animation:
+        floatParticle linear infinite;
+
+      opacity: .5;
+    }
+
+    @keyframes floatParticle {
+
+      from {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: .7;
+      }
+
+      80% {
+        opacity: .5;
+      }
+
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+
+    }
+
+
+    /* =====================================================
+       LOGIN PAGE
+    ===================================================== */
+
+    #loginPage {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+    }
+
+    .login-container {
+
+      width: min(1100px, 100%);
+      min-height: 630px;
+
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+
+      background:
+        rgba(8,14,35,.82);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 28px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 30px 100px rgba(0,0,0,.55),
+        0 0 80px rgba(0,234,255,.08);
+
+      backdrop-filter: blur(20px);
+    }
+
+
+    /* LOGIN LEFT */
+
+    .login-showcase {
+
+      position: relative;
+
+      padding: 60px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,234,255,.08),
+          transparent
+        ),
+        linear-gradient(
+          315deg,
+          rgba(155,92,255,.12),
+          transparent
+        );
+    }
+
+    .login-showcase::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 350px;
+      height: 350px;
+
+      right: -130px;
+      top: -120px;
+
+      border-radius: 50%;
+
+      background: var(--cyan);
+
+      filter: blur(140px);
+
+      opacity: .12;
+    }
+
+    .logo {
+
+      font-family: Orbitron;
+
+      color: var(--cyan);
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+      letter-spacing: 3px;
+
+      margin-bottom: 30px;
+    }
+
+    .login-showcase h1 {
+
+      font-family: Orbitron;
+
+      font-size:
+        clamp(38px, 5vw, 68px);
+
+      line-height: 1.05;
+
+      margin-bottom: 22px;
+    }
+
+    .login-showcase h1 span {
+
+      color: var(--cyan);
+
+      text-shadow:
+        0 0 25px rgba(0,234,255,.55);
+    }
+
+    .login-showcase p {
+
+      max-width: 550px;
+
+      color: var(--muted);
+
+      line-height: 1.9;
+    }
+
+    .feature-list {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-top: 30px;
+    }
+
+    .feature {
+
+      padding: 10px 15px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 50px;
+
+      background:
+        rgba(255,255,255,.04);
+
+      color: #cdd8f5;
+
+      font-size: 12px;
+    }
+
+
+    /* LOGIN RIGHT */
+
+    .login-box {
+
+      padding: 55px 45px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      background:
+        rgba(255,255,255,.025);
+    }
+
+    .login-box h2 {
+
+      font-family: Orbitron;
+
+      font-size: 28px;
+
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+
+      display: block;
+
+      color: #aebbd9;
+
+      font-size: 12px;
+
+      margin-bottom: 8px;
+    }
+
+    .input-group input {
+
+      width: 100%;
+
+      padding: 15px 16px;
+
+      outline: none;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 12px;
+
+      color: white;
+
+      background:
+        rgba(255,255,255,.05);
+
+      transition: .3s;
+    }
+
+    .input-group input:focus {
+
+      border-color: var(--cyan);
+
+      box-shadow:
+        0 0 25px rgba(0,234,255,.1);
+    }
+
+    .login-btn {
+
+      width: 100%;
+
+      border: 0;
+
+      padding: 15px;
+
+      margin-top: 8px;
+
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      color: #00151b;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          #5affdb
+        );
+
+      font-weight: 800;
+
+      transition: .3s;
+
+      box-shadow:
+        0 0 25px rgba(0,234,255,.2);
+    }
+
+    .login-btn:hover {
+
+      transform:
+        translateY(-3px);
+
+      box-shadow:
+        0 10px 35px
+        rgba(0,234,255,.25);
+    }
+
+    .login-message {
+
+      min-height: 25px;
+
+      margin-top: 14px;
+
+      text-align: center;
+
+      font-size: 12px;
+    }
+
+    .demo-account {
+
+      margin-top: 22px;
+
+      padding: 14px;
+
+      text-align: center;
+
+      font-size: 11px;
+
+      color: var(--muted);
+
+      background:
+        rgba(0,234,255,.04);
+
+      border:
+        1px dashed
+        rgba(0,234,255,.3);
+
+      border-radius: 12px;
+    }
+
+    .demo-account strong {
+
+      color: var(--cyan);
+    }
+
+
+    /* =====================================================
+       APPLICATION
+    ===================================================== */
+
+    #app {
+      display: none;
+    }
+
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .navbar {
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+      height: 75px;
+
+      padding:
+        0 5%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        rgba(5,8,22,.82);
+
+      backdrop-filter:
+        blur(20px);
+    }
+
+    .nav-logo {
+
+      font-family: Orbitron;
+
+      color: var(--cyan);
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+    }
+
+    .nav-menu {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 4px;
+    }
+
+    .nav-menu a,
+    .logout-btn {
+
+      color: #aebbd9;
+
+      text-decoration: none;
+
+      padding: 9px 11px;
+
+      border-radius: 8px;
+
+      border: 0;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      font-size: 12px;
+
+      transition: .3s;
+    }
+
+    .nav-menu a:hover,
+    .logout-btn:hover {
+
+      color: var(--cyan);
+
+      background:
+        rgba(0,234,255,.06);
+    }
+
+
+    /* =====================================================
+       HERO / LANDING
+    ===================================================== */
+
+    .hero {
+
+      position: relative;
+
+      min-height: 650px;
+
+      padding:
+        100px 7%;
+
+      display: flex;
+
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+    .hero-content {
+
+      max-width: 760px;
+
+      z-index: 2;
+    }
+
+    .badge {
+
+      display: inline-flex;
+
+      padding: 8px 14px;
+
+      border:
+        1px solid
+        rgba(0,234,255,.3);
+
+      border-radius: 50px;
+
+      color: var(--cyan);
+
+      background:
+        rgba(0,234,255,.05);
+
+      font-size: 11px;
+
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+
+      font-family: Orbitron;
+
+      font-size:
+        clamp(40px, 7vw, 82px);
+
+      line-height: 1.03;
+
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          #fff,
+          var(--purple)
+        );
+
+      -webkit-background-clip: text;
+
+      color: transparent;
+
+      background-size: 200%;
+
+      animation:
+        gradientMove 4s
+        infinite alternate;
+    }
+
+    @keyframes gradientMove {
+
+      from {
+        background-position: 0%;
+      }
+
+      to {
+        background-position: 100%;
+      }
+
+    }
+
+    .hero p {
+
+      max-width: 680px;
+
+      color: var(--muted);
+
+      line-height: 1.9;
+
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+
+      display: flex;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+
+      padding: 13px 22px;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      font-weight: 700;
+
+      transition: .3s;
+    }
+
+    .primary-btn {
+
+      border: 0;
+
+      color: #00151b;
+
+      background:
+        var(--cyan);
+    }
+
+    .secondary-btn {
+
+      border:
+        1px solid var(--border);
+
+      color: white;
+
+      background:
+        rgba(255,255,255,.04);
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover {
+
+      transform:
+        translateY(-3px);
+    }
+
+
+    /* HERO ORB */
+
+    .hero-orb {
+
+      position: absolute;
+
+      width: 520px;
+      height: 520px;
+
+      right: 4%;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(0,234,255,.13);
+
+      box-shadow:
+        0 0 80px
+        rgba(0,234,255,.08),
+
+        inset 0 0 80px
+        rgba(155,92,255,.08);
+
+      animation:
+        orbRotate 15s
+        linear infinite;
+    }
+
+    .hero-orb::before,
+    .hero-orb::after {
+
+      content: "";
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(155,92,255,.25);
+    }
+
+    .hero-orb::before {
+
+      inset: 55px;
+    }
+
+    .hero-orb::after {
+
+      inset: 110px;
+
+      border-color:
+        rgba(0,234,255,.2);
+    }
+
+    @keyframes orbRotate {
+
+      to {
+        transform: rotate(360deg);
+      }
+
+    }
+
+
+    /* =====================================================
+       SECTION
+    ===================================================== */
+
+    .section {
+
+      padding:
+        90px 7%;
+    }
+
+    .section-title {
+
+      text-align: center;
+
+      margin-bottom: 45px;
+    }
+
+    .section-title span {
+
+      color: var(--cyan);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      letter-spacing: 3px;
+    }
+
+    .section-title h2 {
+
+      font-family: Orbitron;
+
+      font-size:
+        clamp(28px,4vw,45px);
+
+      margin:
+        10px 0;
+    }
+
+    .section-title p {
+
+      max-width: 650px;
+
+      margin: auto;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+
+    /* =====================================================
+       BASIC
+    ===================================================== */
+
+    .basics-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap: 18px;
+    }
+
+    .basic-card {
+
+      position: relative;
+
+      padding: 28px;
+
+      overflow: hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 18px;
+
+      background:
+        var(--card);
+
+      transition: .35s;
+    }
+
+    .basic-card:hover {
+
+      transform:
+        translateY(-8px);
+
+      border-color:
+        rgba(0,234,255,.35);
+
+      box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.25);
+    }
+
+    .basic-icon {
+
+      font-size: 35px;
+
+      margin-bottom: 18px;
+    }
+
+    .basic-card h3 {
+
+      margin-bottom: 10px;
+    }
+
+    .basic-card p {
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       HERO DATABASE
+    ===================================================== */
+
+    .search-box {
+
+      max-width: 500px;
+
+      margin:
+        0 auto 25px;
+    }
+
+    .search-box input {
+
+      width: 100%;
+
+      padding: 14px 18px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 12px;
+
+      outline: none;
+
+      color: white;
+
+      background:
+        rgba(255,255,255,.04);
+    }
+
+    .search-box input:focus {
+
+      border-color:
+        var(--cyan);
+    }
+
+    .hero-controls {
+
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-bottom: 30px;
+    }
+
+    .filter-btn {
+
+      padding: 9px 15px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 50px;
+
+      color: #b8c4dd;
+
+      background:
+        rgba(255,255,255,.04);
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      transition: .3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+
+      color: #00151b;
+
+      background:
+        var(--cyan);
+
+      border-color:
+        var(--cyan);
+    }
+
+    .hero-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 20px;
+    }
+
+    .hero-card {
+
+      overflow: hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 20px;
+
+      background:
+        var(--card);
+
+      transition: .4s;
+    }
+
+    .hero-card:hover {
+
+      transform:
+        translateY(-10px);
+
+      border-color:
+        rgba(0,234,255,.4);
+
+      box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.35);
+    }
+
+
+    /* HERO IMAGE */
+
+    .hero-image {
+
+      position: relative;
+
+      height: 250px;
+
+      overflow: hidden;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(0,234,255,.18),
+          transparent 65%
+        ),
+        linear-gradient(
+          135deg,
+          #101b42,
+          #080c21
+        );
+    }
+
+    .hero-image img {
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      transition:
+        transform .5s ease;
+    }
+
+    .hero-card:hover
+    .hero-image img {
+
+      transform:
+        scale(1.08);
+    }
+
+    .hero-fallback {
+
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 80px;
+
+      z-index: 0;
+    }
+
+    .hero-role {
+
+      position: absolute;
+
+      top: 14px;
+      left: 14px;
+
+      z-index: 5;
+
+      padding: 6px 11px;
+
+      border-radius: 50px;
+
+      color: var(--cyan);
+
+      background:
+        rgba(0,0,0,.65);
+
+      backdrop-filter:
+        blur(10px);
+
+      border:
+        1px solid
+        rgba(0,234,255,.15);
+
+      font-size: 10px;
+    }
+
+    .hero-info {
+
+      padding: 22px;
+    }
+
+    .hero-info h3 {
+
+      font-family: Orbitron;
+
+      margin-bottom: 5px;
+    }
+
+    .hero-subtitle {
+
+      color: var(--cyan);
+
+      font-size: 10px;
+
+      margin-bottom: 13px;
+    }
+
+    .hero-info p {
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.7;
+
+      margin-bottom: 15px;
+    }
+
+    .skills {
+
+      display: flex;
+
+      gap: 7px;
+
+      flex-wrap: wrap;
+    }
+
+    .skill {
+
+      padding: 6px 8px;
+
+      border-radius: 6px;
+
+      color: #c9d4eb;
+
+      background:
+        rgba(255,255,255,.04);
+
+      font-size: 9px;
+    }
+
+    .combo {
+
+      margin-top: 15px;
+
+      padding: 12px;
+
+      border-left:
+        2px solid var(--gold);
+
+      border-radius: 5px;
+
+      color: #d9def0;
+
+      background:
+        rgba(255,212,71,.04);
+
+      font-size: 10px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =====================================================
+       MACRO MICRO
+    ===================================================== */
+
+    .macro-micro-tabs {
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 12px;
+
+      margin-bottom: 30px;
+    }
+
+    .mm-tab {
+
+      min-width: 160px;
+
+      padding: 13px 22px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 10px;
+
+      color: #aebbd9;
+
+      background:
+        rgba(255,255,255,.04);
+
+      cursor: pointer;
+
+      font-weight: 700;
+
+      transition: .3s;
+    }
+
+    .mm-tab:hover,
+    .mm-tab.active {
+
+      color: #00151b;
+
+      background:
+        var(--cyan);
+
+      border-color:
+        var(--cyan);
+
+      box-shadow:
+        0 0 30px
+        rgba(0,234,255,.18);
+
+      transform:
+        translateY(-3px);
+    }
+
+    .mm-content {
+
+      display: none;
+
+      animation:
+        mmFade .5s ease;
+    }
+
+    .mm-content.active {
+
+      display: block;
+    }
+
+    @keyframes mmFade {
+
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    .mm-header {
+
+      max-width: 1000px;
+
+      margin:
+        0 auto 30px;
+
+      padding: 30px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      border:
+        1px solid
+        rgba(0,234,255,.15);
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,234,255,.07),
+          rgba(155,92,255,.06)
+        );
+    }
+
+    .mm-label {
+
+      color: var(--cyan);
+
+      font-size: 10px;
+
+      letter-spacing: 3px;
+
+      font-weight: 800;
+    }
+
+    .mm-header h3 {
+
+      font-family: Orbitron;
+
+      font-size: 28px;
+
+      margin:
+        8px 0;
+    }
+
+    .mm-header p {
+
+      max-width: 700px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.7;
+    }
+
+    .mm-icon {
+
+      width: 90px;
+      height: 90px;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(0,234,255,.2);
+
+      background:
+        rgba(0,234,255,.06);
+
+      font-size: 40px;
+
+      box-shadow:
+        0 0 40px
+        rgba(0,234,255,.1);
+
+      animation:
+        iconFloat 3s
+        ease-in-out infinite;
+    }
+
+    @keyframes iconFloat {
+
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+    }
+
+    .mm-grid {
+
+      max-width: 1100px;
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 18px;
+    }
+
+    .mm-card {
+
+      position: relative;
+
+      min-height: 250px;
+
+      padding: 27px;
+
+      overflow: hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 18px;
+
+      background:
+        var(--card);
+
+      transition: .35s;
+    }
+
+    .mm-card::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 130px;
+      height: 130px;
+
+      right: -70px;
+      top: -70px;
+
+      border-radius: 50%;
+
+      background:
+        var(--cyan);
+
+      filter: blur(65px);
+
+      opacity: .08;
+
+      transition: .4s;
+    }
+
+    .mm-card:hover {
+
+      transform:
+        translateY(-8px);
+
+      border-color:
+        rgba(0,234,255,.35);
+
+      box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.3);
+    }
+
+    .mm-card:hover::before {
+
+      opacity: .18;
+    }
+
+    .mm-number {
+
+      display: inline-flex;
+
+      width: 35px;
+      height: 35px;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 8px;
+
+      color: var(--cyan);
+
+      background:
+        rgba(0,234,255,.08);
+
+      font-family: Orbitron;
+
+      font-size: 10px;
+
+      margin-bottom: 18px;
+    }
+
+    .mm-card h4 {
+
+      font-size: 17px;
+
+      margin-bottom: 10px;
+    }
+
+    .mm-card p {
+
+      color: var(--muted);
+
+      font-size: 11px;
+
+      line-height: 1.8;
+    }
+
+    .practice {
+
+      margin-top: 18px;
+
+      padding: 10px;
+
+      border-left:
+        2px solid var(--gold);
+
+      border-radius: 5px;
+
+      color: #cfd8ed;
+
+      background:
+        rgba(255,212,71,.04);
+
+      font-size: 9px;
+
+      line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       TRAINING
+    ===================================================== */
+
+    .training-box {
+
+      max-width: 1100px;
+
+      margin:
+        40px auto 0;
+
+      padding: 30px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(155,92,255,.07),
+          rgba(0,234,255,.04)
+        );
+    }
+
+    .training-box h3 {
+
+      font-family: Orbitron;
+
+      margin:
+        8px 0;
+    }
+
+    .training-description {
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+    .training-list {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap: 10px;
+
+      margin-top: 25px;
+    }
+
+    .training-list label {
+
+      padding: 13px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 10px;
+
+      color: #c6d0e7;
+
+      font-size: 11px;
+
+      cursor: pointer;
+
+      transition: .3s;
+    }
+
+    .training-list label:hover {
+
+      background:
+        rgba(0,234,255,.04);
+
+      border-color:
+        rgba(0,234,255,.2);
+    }
+
+    .training-list input {
+
+      accent-color:
+        var(--cyan);
+
+      margin-right: 8px;
+    }
+
+    .progress-wrapper {
+
+      margin-top: 25px;
+    }
+
+    .progress-info {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      color: var(--muted);
+
+      font-size: 11px;
+
+      margin-bottom: 8px;
+    }
+
+    .progress-info strong {
+
+      color: var(--cyan);
+    }
+
+    .progress
+    /* =====================================================
+PROGRESS
+===================================================== */
+
+.progress {
+width: 100%;
+height: 10px;
+
+overflow: hidden;
+
+border-radius: 50px;
+
+background:
+rgba(255,255,255,.06);
+}
+
+.progress-bar {
+width: 0%;
+
+height: 100%;
+
+border-radius: inherit;
+
+background:
+linear-gradient(
+90deg,
+var(--cyan),
+var(--green)
+);
+
+box-shadow:
+0 0 15px
+rgba(0,234,255,.35);
+
+transition:
+width .5s ease;
+}
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.footer {
+
+padding:
+50px 7% 30px;
+
+border-top:
+1px solid var(--border);
+
+background:
+rgba(0,0,0,.18);
+
+text-align: center;
+}
+
+.footer-logo {
+
+font-family: Orbitron;
+
+color: var(--cyan);
+
+font-weight: 800;
+
+letter-spacing: 3px;
+
+margin-bottom: 12px;
+}
+
+.footer p {
+
+color: var(--muted);
+
+font-size: 11px;
+
+line-height: 1.7;
+}
+
+.footer-small {
+
+margin-top: 20px;
+
+color:
+#5f6c89;
+
+font-size: 10px;
+}
+
+/* =====================================================
+MODAL
+===================================================== */
+
+.modal {
+
+position: fixed;
+
+inset: 0;
+
+z-index: 999;
+
+display: none;
+
+align-items: center;
+
+justify-content: center;
+
+padding: 20px;
+
+background:
+rgba(0,0,0,.75);
+
+backdrop-filter:
+blur(12px);
+}
+
+.modal.active {
+
+display: flex;
+}
+
+.modal-box {
+
+width:
+min(650px, 100%);
+
+max-height:
+90vh;
+
+overflow-y: auto;
+
+padding: 30px;
+
+border:
+1px solid var(--border);
+
+border-radius: 22px;
+
+background:
+linear-gradient(
+145deg,
+rgba(12,21,50,.98),
+rgba(6,10,28,.98)
+);
+
+box-shadow:
+0 30px 100px
+rgba(0,0,0,.6),
+
+0 0 50px  
+rgba(0,234,255,.08);
+
+animation:
+modalIn .3s ease;
+}
+
+@keyframes modalIn {
+
+from {
+opacity: 0;
+transform:
+translateY(25px)
+scale(.97);
+}
+
+to {
+opacity: 1;
+transform:
+translateY(0)
+scale(1);
+}
+
+}
+
+.modal-close {
+
+float: right;
+
+width: 35px;
+height: 35px;
+
+border:
+1px solid var(--border);
+
+border-radius: 50%;
+
+color: white;
+
+background:
+rgba(255,255,255,.05);
+
+cursor: pointer;
+
+font-size: 18px;
+
+transition: .3s;
+}
+
+.modal-close:hover {
+
+color: var(--red);
+
+border-color:
+var(--red);
+}
+
+.modal-image {
+
+width: 100%;
+
+height: 260px;
+
+object-fit: cover;
+
+border-radius: 15px;
+
+margin-bottom: 22px;
+
+background:
+linear-gradient(
+135deg,
+#101b42,
+#080c21
+);
+}
+
+.modal-box h2 {
+
+font-family: Orbitron;
+
+margin-bottom: 6px;
+}
+
+.modal-role {
+
+display: inline-block;
+
+color: var(--cyan);
+
+font-size: 10px;
+
+padding: 6px 10px;
+
+margin-bottom: 18px;
+
+border-radius: 50px;
+
+background:
+rgba(0,234,255,.07);
+
+border:
+1px solid
+rgba(0,234,255,.2);
+}
+
+.modal-box p {
+
+color: var(--muted);
+
+font-size: 12px;
+
+line-height: 1.8;
+
+margin-bottom: 18px;
+}
+
+.modal-section {
+
+margin-top: 22px;
+}
+
+.modal-section h4 {
+
+color: white;
+
+font-size: 13px;
+
+margin-bottom: 10px;
+}
+
+.modal-list {
+
+display: grid;
+
+gap: 8px;
+
+padding-left: 0;
+
+list-style: none;
+}
+
+.modal-list li {
+
+padding: 10px 12px;
+
+border:
+1px solid var(--border);
+
+border-radius: 8px;
+
+color: #bdc9e3;
+
+background:
+rgba(255,255,255,.025);
+
+font-size: 11px;
+}
+
+/* =====================================================
+BACK TO TOP
+===================================================== */
+
+.back-top {
+
+position: fixed;
+
+right: 25px;
+bottom: 25px;
+
+z-index: 90;
+
+width: 42px;
+height: 42px;
+
+border:
+1px solid rgba(0,234,255,.25);
+
+border-radius: 50%;
+
+color: var(--cyan);
+
+background:
+rgba(5,8,22,.85);
+
+backdrop-filter:
+blur(10px);
+
+cursor: pointer;
+
+opacity: 0;
+
+visibility: hidden;
+
+transform:
+translateY(15px);
+
+transition: .3s;
+}
+
+.back-top.show {
+
+opacity: 1;
+
+visibility: visible;
+
+transform:
+translateY(0);
+}
+
+.back-top:hover {
+
+background:
+var(--cyan);
+
+color: #00151b;
+}
+
+/* =====================================================
+TOAST
+===================================================== */
+
+.toast {
+
+position: fixed;
+
+left: 50%;
+
+bottom: 30px;
+
+z-index: 2000;
+
+transform:
+translate(-50%, 30px);
+
+opacity: 0;
+
+pointer-events: none;
+
+padding:
+12px 18px;
+
+border:
+1px solid
+rgba(0,234,255,.25);
+
+border-radius: 10px;
+
+color: white;
+
+background:
+rgba(8,14,35,.95);
+
+box-shadow:
+0 10px 40px
+rgba(0,0,0,.4);
+
+font-size: 11px;
+
+transition: .35s;
+}
+
+.toast.show {
+
+opacity: 1;
+
+transform:
+translate(-50%, 0);
+}
+
+/* =====================================================
+NO RESULT
+===================================================== */
+
+.no-result {
+
+grid-column:
+1 / -1;
+
+padding: 50px 20px;
+
+text-align: center;
+
+color: var(--muted);
+
+border:
+1px dashed var(--border);
+
+border-radius: 15px;
+
+background:
+rgba(255,255,255,.02);
+}
+
+.no-result strong {
+
+display: block;
+
+color: white;
+
+font-family: Orbitron;
+
+margin-bottom: 8px;
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+.login-container {
+grid-template-columns: 1fr;
+}
+
+.login-showcase {
+min-height: 420px;
+}
+
+.basics-grid {
+grid-template-columns:
+repeat(2, 1fr);
+}
+
+.hero-grid {
+grid-template-columns:
+repeat(2, 1fr);
+}
+
+.mm-grid {
+grid-template-columns:
+repeat(2, 1fr);
+}
+
+.hero-orb {
+opacity: .25;
+right: -200px;
+}
+
+}
+
+@media (max-width: 760px) {
+
+.navbar {
+height: auto;
+min-height: 70px;
+
+padding:  
+  15px 5%;  
+
+flex-wrap: wrap;  
+
+gap: 10px;
+
+}
+
+.nav-menu {
+width: 100%;
+
+overflow-x: auto;  
+
+justify-content: flex-start;  
+
+padding-bottom: 3px;
+
+}
+
+.nav-menu a,
+.logout-btn {
+flex-shrink: 0;
+}
+
+.hero {
+min-height: 600px;
+
+padding:  
+  80px 6%;
+
+}
+
+.hero h1 {
+font-size: clamp(
+38px,
+12vw,
+65px
+);
+}
+
+.hero-orb {
+width: 350px;
+height: 350px;
+
+right: -180px;  
+
+opacity: .15;
+
+}
+
+.section {
+padding:
+65px 6%;
+}
+
+.basics-grid,
+.hero-grid,
+.mm-grid,
+.training-list {
+grid-template-columns: 1fr;
+}
+
+.mm-header {
+flex-direction: column;
+
+align-items: flex-start;  
+
+gap: 25px;
+
+}
+
+.mm-icon {
+width: 70px;
+height: 70px;
+
+font-size: 30px;
+
+}
+
+.macro-micro-tabs {
+flex-direction: column;
+}
+
+.mm-tab {
+width: 100%;
+}
+
+.hero-image {
+height: 280px;
+}
+
+}
+
+@media (max-width: 500px) {
+
+#loginPage {
+padding: 12px;
+}
+
+.login-container {
+border-radius: 18px;
+}
+
+.login-showcase {
+padding: 35px 25px;
+
+min-height: 390px;
+
+}
+
+.login-box {
+padding:
+35px 25px;
+}
+
+.login-showcase h1 {
+font-size: 38px;
+}
+
+.feature-list {
+gap: 7px;
+}
+
+.feature {
+font-size: 10px;
+padding: 8px 11px;
+}
+
+.hero-buttons {
+flex-direction: column;
+}
+
+.primary-btn,
+.secondary-btn {
+width: 100%;
+}
+
+.hero-info {
+padding: 18px;
+}
+
+.training-box {
+padding: 20px;
+}
+
+.modal-box {
+padding: 22px;
+}
+
+.modal-image {
+height: 200px;
+}
+
+}
+
+/* =====================================================
+ACCESSIBILITY
+===================================================== */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+
+outline:
+2px solid var(--cyan);
+
+outline-offset:
+3px;
+}
+
+::selection {
+
+color: #00151b;
+
+background:
+var(--cyan);
+}
+
+/* =====================================================
+PAGE LOAD
+===================================================== */
+
+body.loaded .hero-content {
+
+animation:
+heroIn .8s ease both;
+}
+
+@keyframes heroIn {
+
+from {
+opacity: 0;
+transform:
+translateY(30px);
+}
+
+to {
+opacity: 1;
+transform:
+translateY(0);
+}
+
+}
+</style>
+
+</head>  <body>  <!-- =====================================================  
+     PARTICLES  
+===================================================== -->  <div class="particles" id="particles"></div>  <!-- =====================================================  
+     LOGIN PAGE  
+===================================================== -->  <section id="loginPage">    <div class="login-container">  <div class="login-showcase">  
+
+  <div class="logo">  
+    LOD // ACADEMY  
+  </div>  
+
+  <h1>  
+    MASTER<br>  
+    <span>THE LAND</span>  
+  </h1>  
+
+  <p>  
+    Platform pembelajaran Mobile Legends untuk membantu  
+    memahami hero, role, macro, micro, rotasi, objektif,  
+    dan fundamental permainan secara lebih terstruktur.  
+  </p>  
+
+  <div class="feature-list">  
+
+    <div class="feature">  
+      ⚔ HERO DATABASE  
+    </div>  
+
+    <div class="feature">  
+      🧠 MACRO & MICRO  
+    </div>  
+
+    <div class="feature">  
+      🎯 TRAINING MODE  
+    </div>  
+
+    <div class="feature">  
+      📊 PROGRESS TRACKER  
+    </div>  
+
+  </div>  
+
+</div>  
+
+
+<div class="login-box">  
+
+  <h2>WELCOME BACK</h2>  
+
+  <div class="login-subtitle">  
+    Masuk ke LOD Academy untuk melanjutkan latihanmu.  
+  </div>  
+
+  <form id="loginForm">  
+
+    <div class="input-group">  
+
+      <label for="username">  
+        USERNAME  
+      </label>  
+
+      <input  
+        id="username"  
+        type="text"  
+        placeholder="Masukkan username"  
+        autocomplete="username"  
+        required  
+      >  
+
+    </div>  
+
+
+    <div class="input-group">  
+
+      <label for="password">  
+        PASSWORD  
+      </label>  
+
+      <input  
+        id="password"  
+        type="password"  
+        placeholder="Masukkan password"  
+        autocomplete="current-password"  
+        required  
+      >  
+
+    </div>  
+
+
+    <button  
+      class="login-btn"  
+      type="submit"  
+    >  
+      ENTER ACADEMY →  
+    </button>  
+
+  </form>  
+
+
+  <div  
+    class="login-message"  
+    id="loginMessage"  
+  ></div>  
+
+
+  <div class="demo-account">  
+
+    Demo Account:  
+    <strong>admin123</strong>  
+    /  
+    <strong>admin123</strong>  
+
+  </div>  
+
+</div>
+
+  </div>  </section>  <!-- =====================================================  
+     APPLICATION  
+===================================================== -->  <div id="app">    <!-- ===================================================  
+       NAVBAR  
+  =================================================== -->    <nav class="navbar">  <div class="nav-logo">  
+  LOD ACADEMY  
+</div>  
+
+<div class="nav-menu">  
+
+  <a href="#home">  
+    Home  
+  </a>  
+
+  <a href="#basics">  
+    Basics  
+  </a>  
+
+  <a href="#heroes">  
+    Heroes  
+  </a>  
+
+  <a href="#macro">  
+    Macro / Micro  
+  </a>  
+
+  <a href="#training">  
+    Training  
+  </a>  
+
+  <button  
+    class="logout-btn"  
+    id="logoutBtn"  
+  >  
+    Logout  
+  </button>  
+
+</div>
+
+  </nav>    <!-- ===================================================  
+       HERO  
+  =================================================== -->    <section  
+    class="hero"  
+    id="home"  
+  >  <div class="hero-content">  
+
+  <div class="badge">  
+    ⚡ MOBILE LEGENDS LEARNING SYSTEM  
+  </div>  
+
+  <h1>  
+    PLAY SMART.<br>  
+    <span>WIN WITH PURPOSE.</span>  
+  </h1>  
+
+  <p>  
+    Pelajari dasar permainan, pahami role dan hero,  
+    kuasai macro & micro, lalu ukur perkembanganmu  
+    melalui training checklist.  
+  </p>  
+
+  <div class="hero-buttons">  
+
+    <button  
+      class="primary-btn"  
+      onclick="scrollToSection('heroes')"  
+    >  
+      EXPLORE HEROES  
+    </button>  
+
+    <button  
+      class="secondary-btn"  
+      onclick="scrollToSection('training')"  
+    >  
+      START TRAINING  
+    </button>  
+
+  </div>  
+
+</div>  
+
+
+<div class="hero-orb"></div>
+
+  </section>    <!-- ===================================================  
+       BASICS  
+  =================================================== -->    <section  
+    class="section"  
+    id="basics"  
+  >  <div class="section-title">  
+
+  <span>01 // FUNDAMENTAL</span>  
+
+  <h2>GAME BASICS</h2>  
+
+  <p>  
+    Sebelum memikirkan mekanik tingkat lanjut,  
+    pahami terlebih dahulu fondasi permainan.  
+  </p>  
+
+</div>  
+
+
+<div class="basics-grid">  
+
+
+  <div class="basic-card">  
+
+    <div class="basic-icon">  
+      🗺️  
+    </div>  
+
+    <h3>Map Awareness</h3>  
+
+    <p>  
+      Biasakan melihat minimap secara berkala,  
+      mengetahui posisi lawan, dan membaca  
+      informasi yang tersedia di battlefield.  
+    </p>  
+
+  </div>  
+
+
+  <div class="basic-card">  
+
+    <div class="basic-icon">  
+      🎯  
+    </div>  
+
+    <h3>Objectives</h3>  
+
+    <p>  
+      Turret, Turtle, Lord, buff dan wave  
+      merupakan bagian penting dari pengambilan  
+      keputusan dalam pertandingan.  
+    </p>  
+
+  </div>  
+
+
+  <div class="basic-card">  
+
+    <div class="basic-icon">  
+      💰  
+    </div>  
+
+    <h3>Gold & EXP</h3>  
+
+    <p>  
+      Kelola resource dengan baik. Farming,  
+      lane management dan timing recall  
+      memengaruhi perkembangan hero.  
+    </p>  
+
+  </div>  
+
+
+  <div class="basic-card">  
+
+    <div class="basic-icon">  
+      🤝  
+    </div>  
+
+    <h3>Team Play</h3>  
+
+    <p>  
+      Komunikasi, rotasi dan pemilihan timing  
+      teamfight dapat mengubah jalannya  
+      sebuah pertandingan.  
+    </p>  
+
+  </div>  
+
+</div>
+
+  </section>    <!-- ===================================================  
+       HERO DATABASE  
+  =================================================== -->    <section  
+    class="section"  
+    id="heroes"  
+  >  <div class="section-title">  
+
+  <span>02 // DATABASE</span>  
+
+  <h2>HERO DATABASE</h2>  
+
+  <p>  
+    Pelajari karakteristik beberapa hero  
+    dan pahami konsep dasar penggunaannya.  
+  </p>  
+
+</div>  
+
+
+<div class="search-box">  
+
+  <input  
+    type="search"  
+    id="heroSearch"  
+    placeholder="Cari hero atau role..."  
+  >  
+
+</div>  
+
+
+<div class="hero-controls">  
+
+  <button  
+    class="filter-btn active"  
+    data-filter="all"  
+  >  
+    ALL  
+  </button>  
+
+  <button  
+    class="filter-btn"  
+    data-filter="Tank"  
+  >  
+    TANK  
+  </button>  
+
+  <button  
+    class="filter-btn"  
+    data-filter="Fighter"  
+  >  
+    FIGHTER  
+  </button>  
+
+  <button  
+    class="filter-btn"  
+    data-filter="Assassin"  
+  >  
+    ASSASSIN  
+  </button>  
+
+  <button  
+    class="filter-btn"  
+    data-filter="Mage"  
+  >  
+    MAGE  
+  </button>  
+
+  <button  
+    class="filter-btn"  
+    data-filter="Marksman"  
+  >  
+    MARKSMAN  
+  </button>  
+
+  <button  
+    class="filter-btn"  
+    data-filter="Support"  
+  >  
+    SUPPORT  
+  </button>  
+
+</div>  
+
+
+<div  
+  class="hero-grid"  
+  id="heroGrid"  
+></div>
+
+  </section>    <!-- ===================================================  
+       MACRO MICRO  
+  =================================================== -->    <section  
+    class="section"  
+    id="macro"  
+  >  <div class="section-title">  
+
+  <span>03 // GAME IQ</span>  
+
+  <h2>MACRO & MICRO</h2>  
+
+  <p>  
+    Mekanik membuatmu mampu melakukan aksi.  
+    Macro membantu menentukan kapan dan mengapa  
+    aksi tersebut dilakukan.  
+  </p>  
+
+</div>  
+
+
+<div class="macro-micro-tabs">  
+
+  <button  
+    class="mm-tab active"  
+    data-tab="macroContent"  
+  >  
+    🧠 MACRO  
+  </button>  
+
+  <button  
+    class="mm-tab"  
+    data-tab="microContent"  
+  >  
+    ⚡ MICRO  
+  </button>  
+
+</div>  
+
+
+<!-- MACRO -->  
+
+<div  
+  class="mm-content active"  
+  id="macroContent"  
+>  
+
+  <div class="mm-header">  
+
+    <div>  
+
+      <div class="mm-label">  
+        STRATEGIC THINKING  
+      </div>  
+
+      <h3>  
+        MACRO PLAY  
+      </h3>  
+
+      <p>  
+        Macro berhubungan dengan keputusan  
+        berskala lebih besar seperti rotasi,  
+        objektif, wave management dan positioning  
+        tim di seluruh map.  
+      </p>  
+
+    </div>  
+
+    <div class="mm-icon">  
+      🧠  
+    </div>  
+
+  </div>  
+
+
+  <div class="mm-grid">  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        01  
+      </div>  
+
+      <h4>Map Awareness</h4>  
+
+      <p>  
+        Perhatikan minimap untuk mengetahui  
+        posisi teman, lawan dan area yang  
+        berpotensi menjadi ancaman.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Lihat minimap setiap beberapa detik.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        02  
+      </div>  
+
+      <h4>Rotation</h4>  
+
+      <p>  
+        Jangan melakukan rotasi tanpa tujuan.  
+        Hubungkan rotasi dengan wave,  
+        objektif atau pressure.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Tentukan tujuan sebelum meninggalkan lane.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        03  
+      </div>  
+
+      <h4>Objective Control</h4>  
+
+      <p>  
+        Buat keputusan berdasarkan objektif  
+        yang tersedia dan kondisi resource tim.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Prioritaskan objective daripada chase.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        04  
+      </div>  
+
+      <h4>Wave Management</h4>  
+
+      <p>  
+        Perhatikan posisi minion sebelum  
+        melakukan recall atau rotasi panjang.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Jangan meninggalkan wave tanpa alasan.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        05  
+      </div>  
+
+      <h4>Tempo</h4>  
+
+      <p>  
+        Tempo menentukan tim mana yang memiliki  
+        kesempatan lebih dahulu melakukan play.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Gunakan waktu setelah menang trade untuk pressure.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        06  
+      </div>  
+
+      <h4>Trading Objectives</h4>  
+
+      <p>  
+        Jika suatu objektif tidak dapat diamankan,  
+        pertimbangkan mendapatkan keuntungan  
+        lain daripada memaksakan fight.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Cari keuntungan di sisi map lainnya.  
+      </div>  
+
+    </div>  
+
+  </div>  
+
+</div>  
+
+
+<!-- MICRO -->  
+
+<div  
+  class="mm-content"  
+  id="microContent"  
+>  
+
+  <div class="mm-header">  
+
+    <div>  
+
+      <div class="mm-label">  
+        MECHANICAL EXECUTION  
+      </div>  
+
+      <h3>  
+        MICRO PLAY  
+      </h3>  
+
+      <p>  
+        Micro berkaitan dengan kemampuan mengontrol  
+        hero secara langsung seperti positioning,  
+        skill timing, aiming, movement dan combo.  
+      </p>  
+
+    </div>  
+
+    <div class="mm-icon">  
+      ⚡  
+    </div>  
+
+  </div>  
+
+
+  <div class="mm-grid">  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        01  
+      </div>  
+
+      <h4>Positioning</h4>  
+
+      <p>  
+        Tempatkan hero pada posisi yang memberikan  
+        value maksimal sekaligus meminimalkan risiko.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Jangan masuk area berbahaya tanpa informasi.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        02  
+      </div>  
+
+      <h4>Skill Timing</h4>  
+
+      <p>  
+        Jangan selalu menggunakan skill segera.  
+        Tunggu momen ketika skill memberikan  
+        dampak paling besar.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Latih penggunaan skill berdasarkan kondisi.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        03  
+      </div>  
+
+      <h4>Combo</h4>  
+
+      <p>  
+        Pahami urutan skill dan bagaimana  
+        setiap kemampuan berinteraksi dengan  
+        kemampuan lainnya.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Ulangi combo sampai eksekusinya konsisten.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        04  
+      </div>  
+
+      <h4>Kiting</h4>  
+
+      <p>  
+        Gabungkan basic attack dengan movement  
+        untuk menjaga jarak sambil tetap memberikan  
+        damage.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Latih attack-move secara konsisten.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        05  
+      </div>  
+
+      <h4>Target Selection</h4>  
+
+      <p>  
+        Tentukan target berdasarkan ancaman,  
+        positioning dan kondisi teamfight.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Hindari menyerang target hanya karena paling dekat.  
+      </div>  
+
+    </div>  
+
+
+    <div class="mm-card">  
+
+      <div class="mm-number">  
+        06  
+      </div>  
+
+      <h4>Cooldown Tracking</h4>  
+
+      <p>  
+        Ingat skill penting milikmu dan lawan.  
+        Cooldown dapat menentukan kapan fight  
+        menjadi menguntungkan.  
+      </p>  
+
+      <div class="practice">  
+        PRACTICE:  
+        Perhatikan skill penting setelah digunakan.  
+      </div>  
+
+    </div>  
+
+  </div>  
+
+</div>
+
+  </section>    <!-- ===================================================  
+       TRAINING  
+  =================================================== -->    <section  
+    class="section"  
+    id="training"  
+  >  <div class="section-title">  
+
+  <span>04 // TRAINING MODE</span>  
+
+  <h2>DAILY TRAINING</h2>  
+
+  <p>  
+    Tandai latihan yang sudah kamu lakukan  
+    untuk melihat progress belajar.  
+  </p>  
+
+</div>  
+
+
+<div class="training-box">  
+
+  <div class="mm-label">  
+    TRAINING PROTOCOL  
+  </div>  
+
+  <h3>  
+    PLAYER DEVELOPMENT  
+  </h3>  
+
+  <p class="training-description">  
+    Checklist ini tersimpan di browser sehingga  
+    progress tetap tersedia ketika halaman dibuka kembali.  
+  </p>  
+
+
+  <div class="training-list">  
+
+    <label>  
+      <input  
+        type="checkbox"  
+        class="training-check"  
+      >  
+      Cek minimap secara konsisten  
+    </label>  
+
+    <label>  
+      <input  
+        type="checkbox"  
+        class="training-check"  
+      >  
+      Pahami role hero yang digunakan  
+    </label>  
+
+    <label>  
+      <input  
+        type="checkbox"  
+        class="training-check"  
+      >  
+      Latihan basic combo  
+    </label>  
+
+    <label>  
+      <input  
+        type="checkbox"  
+        class="training-check"  
+      >  
+      Latihan positioning  
+    </label>  
+
+    <label>  
+      <input  
+        type="checkbox"  
+        class="training-check"  
+      >  
+      Perhatikan cooldown lawan  
+    </label>  
+
+    <label>  
+      <input  
+        type="checkbox"  
+        class="training-check"  
+      >  
+      Fokus pada objective  
+    </label>  
+
+    <label>  
+      <input  
+        type="checkbox"  
+        class="training-check"  
+      >  
+      Evaluasi kesalahan setelah match  
+    </label>  
+
+    <label>  
+      <input  
+        type="checkbox"  
+        class="training-check"  
+      >  
+      Hindari unnecessary chase  
+    </label>  
+
+  </div>  
+
+
+  <div class="progress-wrapper">  
+
+    <div class="progress-info">  
+
+      <span>  
+        TRAINING PROGRESS  
+      </span>  
+
+      <strong id="progressText">  
+        0%  
+      </strong>  
+
+    </div>  
+
+    <div class="progress">  
+
+      <div  
+        class="progress-bar"  
+        id="progressBar"  
+      ></div>  
+
+    </div>  
+
+  </div>  
+
+</div>
+
+  </section>    <!-- ===================================================  
+       FOOTER  
+  =================================================== -->    <footer class="footer">  <div class="footer-logo">  
+  LOD ACADEMY  
+</div>  
+
+<p>  
+  Learn. Practice. Adapt. Improve.  
+</p>  
+
+<div class="footer-small">  
+  © 2026 LOD Academy — Educational fan project.  
+</div>
+
+  </footer>  </div>  <!-- =====================================================  
+     HERO MODAL  
+===================================================== -->  <div  
+  class="modal"  
+  id="heroModal"  
+>    <div class="modal-box">  <button  
+  class="modal-close"  
+  id="modalClose"  
+  aria-label="Close"  
+>  
+  ×  
+</button>  
+
+<img  
+  class="modal-image"  
+  id="modalImage"  
+  alt=""  
+>  
+
+<div  
+  class="modal-role"  
+  id="modalRole"  
+></div>  
+
+<h2 id="modalName"></h2>  
+
+<p id="modalDescription"></p>  
+
+
+<div class="modal-section">  
+
+  <h4>  
+    SKILLS  
+  </h4>  
+
+  <ul  
+    class="modal-list"  
+    id="modalSkills"  
+  ></ul>  
+
+</div>  
+
+
+<div class="modal-section">  
+
+  <h4>  
+    BASIC TIPS  
+  </h4>  
+
+  <ul  
+    class="modal-list"  
+    id="modalTips"  
+  ></ul>  
+
+</div>
+
+  </div>  </div>  <!-- =====================================================  
+     TOAST  
+===================================================== -->  <div  
+  class="toast"  
+  id="toast"  
+></div>  <!-- =====================================================  
+     BACK TO TOP  
+===================================================== -->  <button
+class="back-top"
+id="backTop"
+aria-label="Back to top"
+
+> 
+
+↑
+</button>
+
+<script>  
+  
+/* =====================================================  
+   HERO DATA  
+===================================================== */  
+  
+const heroes = [  
+  
+  {  
+    name: "Tigreal",  
+    role: "Tank",  
+    subtitle: "Frontline Initiator",  
+    emoji: "🛡️",  
+  
+    image:  
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",  
+  
+    description:  
+      "Tank yang berfokus pada inisiasi teamfight, crowd control dan membantu tim menciptakan ruang.",  
+  
+    skills: [  
+      "Crowd Control",  
+      "Initiation",  
+      "Peel",  
+      "Frontline"  
+    ],  
+  
+    tips: [  
+      "Jangan melakukan engage tanpa follow-up tim.",  
+      "Perhatikan posisi core sebelum memulai fight.",  
+      "Gunakan vision untuk mencari kesempatan engage."  
+    ]  
+  },  
+  
+  
+  {  
+    name: "Chou",  
+    role: "Fighter",  
+    subtitle: "High Mobility Fighter",  
+    emoji: "🥋",  
+  
+    image:  
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",  
+  
+    description:  
+      "Fighter dengan mobilitas tinggi yang dapat digunakan untuk mengganggu positioning lawan.",  
+  
+    skills: [  
+      "Mobility",  
+      "Crowd Control",  
+      "Pick-off",  
+      "Outplay"  
+    ],  
+  
+    tips: [  
+      "Jangan membuang mobility tanpa tujuan.",  
+      "Cari target penting yang keluar dari formasi.",  
+      "Latih timing skill secara konsisten."  
+    ]  
+  },  
+  
+  
+  {  
+    name: "Ling",  
+    role: "Assassin",  
+    subtitle: "Mobile Assassin",  
+    emoji: "⚔️",  
+  
+    image:  
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",  
+  
+    description:  
+      "Assassin yang mengandalkan mobilitas tinggi dan kemampuan berpindah posisi dengan cepat.",  
+  
+    skills: [  
+      "High Mobility",  
+      "Burst",  
+      "Chase",  
+      "Escape"  
+    ],  
+  
+    tips: [  
+      "Perhatikan resource sebelum masuk fight.",  
+      "Jangan masuk ketika crowd control lawan masih tersedia.",  
+      "Cari angle dari sisi yang tidak terduga."  
+    ]  
+  },  
+  
+  
+  {  
+    name: "Eudora",  
+    role: "Mage",  
+    subtitle: "Burst Mage",  
+    emoji: "⚡",  
+  
+    image:  
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",  
+  
+    description:  
+      "Mage burst yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",  
+  
+    skills: [  
+      "Burst Damage",  
+      "Crowd Control",  
+      "Pick-off",  
+      "Zone Control"  
+    ],  
+  
+    tips: [  
+      "Simpan combo untuk target prioritas.",  
+      "Jangan terlalu maju tanpa vision.",  
+      "Manfaatkan semak untuk membuat pressure."  
+    ]  
+  },  
+  
+  
+  {  
+    name: "Miya",  
+    role: "Marksman",  
+    subtitle: "Late Game Damage Dealer",  
+    emoji: "🏹",  
+  
+    image:  
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",  
+  
+    description:  
+      "Marksman yang berfokus pada basic attack dan damage berkelanjutan.",  
+  
+    skills: [  
+      "DPS",  
+      "Basic Attack",  
+      "Scaling",  
+      "Teamfight"  
+    ],  
+  
+    tips: [  
+      "Prioritaskan farming dengan aman.",  
+      "Jaga positioning ketika teamfight.",  
+      "Gunakan frontline sebagai perlindungan."  
+    ]  
+  },  
+  
+  
+  {  
+    name: "Rafaela",  
+    role: "Support",  
+    subtitle: "Healing Support",  
+    emoji: "✨",  
+  
+    image:  
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",  
+  
+    description:  
+      "Support yang membantu tim melalui healing, movement utility dan sustain dalam pertarungan.",  
+  
+    skills: [  
+      "Healing",  
+      "Utility",  
+      "Vision",  
+      "Team Support"  
+    ],  
+  
+    tips: [  
+      "Tetap berada pada jarak aman.",  
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",  
+      "Bantu tim mengontrol tempo rotasi."  
+    ]  
+  },
+
+
+  {
+    name: "Aamon",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Aamon adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Akai",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Akai adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Aldous",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Aldous adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Alice",
+    role: "Mage",
+    subtitle: "Mage/Tank Hybrid",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Alice adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Alpha",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Alpha adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Alucard",
+    role: "Fighter",
+    subtitle: "Fighter/Assassin Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Alucard adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Angela",
+    role: "Support",
+    subtitle: "Team Support",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Angela adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Argus",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Argus adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Arlott",
+    role: "Fighter",
+    subtitle: "Fighter/Assassin Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Arlott adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Atlas",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Atlas adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Aulus",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Aulus adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Aurora",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Aurora adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Badang",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Badang adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Balmond",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Balmond adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Bane",
+    role: "Fighter",
+    subtitle: "Fighter/Mage Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Bane adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Barats",
+    role: "Tank",
+    subtitle: "Tank/Fighter Hybrid",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Barats adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Baxia",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Baxia adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Beatrix",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Beatrix adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Belerick",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Belerick adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Benedetta",
+    role: "Assassin",
+    subtitle: "Assassin/Fighter Hybrid",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Benedetta adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Brody",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Brody adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Bruno",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Bruno adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Carmilla",
+    role: "Support",
+    subtitle: "Support/Tank Hybrid",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Carmilla adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Cecilion",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Cecilion adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Chang\'e",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Chang\'e adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Chip",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Chip adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Cici",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Cici adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Claude",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Claude adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Clint",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Clint adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Cyclops",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Cyclops adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Diggie",
+    role: "Support",
+    subtitle: "Team Support",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Diggie adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Dyrroth",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Dyrroth adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Edith",
+    role: "Tank",
+    subtitle: "Tank/Marksman Hybrid",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Edith adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Esmeralda",
+    role: "Mage",
+    subtitle: "Mage/Tank Hybrid",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Esmeralda adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Estes",
+    role: "Support",
+    subtitle: "Team Support",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Estes adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Fanny",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Fanny adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Faramis",
+    role: "Support",
+    subtitle: "Support/Mage Hybrid",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Faramis adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Floryn",
+    role: "Support",
+    subtitle: "Team Support",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Floryn adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Franco",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Franco adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Fredrinn",
+    role: "Fighter",
+    subtitle: "Fighter/Tank Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Fredrinn adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Freya",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Freya adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Gatotkaca",
+    role: "Tank",
+    subtitle: "Tank/Fighter Hybrid",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Gatotkaca adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Gloo",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Gloo adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Gord",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Gord adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Granger",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Granger adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Grock",
+    role: "Tank",
+    subtitle: "Tank/Fighter Hybrid",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Grock adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Guinevere",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Guinevere adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Gusion",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Gusion adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Hanabi",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Hanabi adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Hanzo",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Hanzo adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Harith",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Harith adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Harley",
+    role: "Assassin",
+    subtitle: "Assassin/Mage Hybrid",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Harley adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Hayabusa",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Hayabusa adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Helcurt",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Helcurt adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Hilda",
+    role: "Fighter",
+    subtitle: "Fighter/Tank Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Hilda adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Hirara",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Hirara adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Hylos",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Hylos adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Irithel",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Irithel adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Ixia",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Ixia adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Jawhead",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Jawhead adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Johnson",
+    role: "Tank",
+    subtitle: "Tank/Support Hybrid",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Johnson adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Joy",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Joy adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Julian",
+    role: "Fighter",
+    subtitle: "Fighter/Mage Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Julian adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Kadita",
+    role: "Mage",
+    subtitle: "Mage/Assassin Hybrid",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Kadita adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Kagura",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Kagura adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Kaja",
+    role: "Support",
+    subtitle: "Support/Fighter Hybrid",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Kaja adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Kalea",
+    role: "Support",
+    subtitle: "Support/Fighter Hybrid",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Kalea adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Karina",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Karina adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Karrie",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Karrie adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Khaleed",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Khaleed adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Khufra",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Khufra adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Kimmy",
+    role: "Marksman",
+    subtitle: "Marksman/Mage Hybrid",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Kimmy adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Lancelot",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Lancelot adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Lapu-Lapu",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Lapu-Lapu adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Layla",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Layla adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Leomord",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Leomord adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Lesley",
+    role: "Marksman",
+    subtitle: "Marksman/Assassin Hybrid",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Lesley adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Lolita",
+    role: "Support",
+    subtitle: "Support/Tank Hybrid",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Lolita adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Lukas",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Lukas adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Lunox",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Lunox adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Luo Yi",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Luo Yi adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Lylia",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Lylia adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Marcel",
+    role: "Support",
+    subtitle: "Support/Tank Hybrid",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Marcel adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Martis",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Martis adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Masha",
+    role: "Fighter",
+    subtitle: "Fighter/Tank Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Masha adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Mathilda",
+    role: "Support",
+    subtitle: "Support/Assassin Hybrid",
+    emoji: "✨",
+
+    image:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Mathilda adalah support yang membantu tim melalui utility, crowd control, dan sustain dalam pertarungan.",
+
+    skills: [
+      "Healing",
+      "Utility",
+      "Vision",
+      "Team Support"
+    ],
+
+    tips: [
+      "Tetap berada pada jarak aman.",
+      "Jangan menggunakan utility tanpa memperhatikan posisi core.",
+      "Bantu tim mengontrol tempo rotasi."
+    ]
+  },
+
+
+  {
+    name: "Melissa",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Melissa adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Minotaur",
+    role: "Tank",
+    subtitle: "Tank/Support Hybrid",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Minotaur adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Minsitthar",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Minsitthar adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Moskov",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Moskov adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Nana",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Nana adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Natalia",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Natalia adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Natan",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Natan adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Nolan",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Nolan adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Novaria",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Novaria adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Obsidia",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Obsidia adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Odette",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Odette adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Paquito",
+    role: "Fighter",
+    subtitle: "Fighter/Assassin Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Paquito adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Pharsa",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Pharsa adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Phoveus",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Phoveus adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Popol and Kupa",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Popol and Kupa adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Roger",
+    role: "Fighter",
+    subtitle: "Fighter/Marksman Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Roger adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Ruby",
+    role: "Fighter",
+    subtitle: "Fighter/Tank Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Ruby adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Saber",
+    role: "Assassin",
+    subtitle: "Shadow Assassin",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Saber adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Selena",
+    role: "Assassin",
+    subtitle: "Assassin/Mage Hybrid",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Selena adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Silvanna",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Silvanna adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Sora",
+    role: "Fighter",
+    subtitle: "Fighter/Assassin Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Sora adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Sun",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Sun adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Suyou",
+    role: "Assassin",
+    subtitle: "Assassin/Fighter Hybrid",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Suyou adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Terizla",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Terizla adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Thamuz",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Thamuz adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Uranus",
+    role: "Tank",
+    subtitle: "Frontline Guardian",
+    emoji: "🛡️",
+
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Uranus adalah tank yang berfokus pada inisiasi teamfight, crowd control, dan membantu tim menciptakan ruang.",
+
+    skills: [
+      "Crowd Control",
+      "Initiation",
+      "Peel",
+      "Frontline"
+    ],
+
+    tips: [
+      "Jangan melakukan engage tanpa follow-up tim.",
+      "Perhatikan posisi core sebelum memulai fight.",
+      "Gunakan vision untuk mencari kesempatan engage."
+    ]
+  },
+
+
+  {
+    name: "Vale",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Vale adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Valentina",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Valentina adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Valir",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Valir adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Vexana",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Vexana adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "WanWan",
+    role: "Marksman",
+    subtitle: "Ranged Damage Dealer",
+    emoji: "🏹",
+
+    image:
+      "https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "WanWan adalah marksman yang berfokus pada basic attack dan damage berkelanjutan di late game.",
+
+    skills: [
+      "DPS",
+      "Basic Attack",
+      "Scaling",
+      "Teamfight"
+    ],
+
+    tips: [
+      "Prioritaskan farming dengan aman.",
+      "Jaga positioning ketika teamfight.",
+      "Gunakan frontline sebagai perlindungan."
+    ]
+  },
+
+
+  {
+    name: "Xavier",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Xavier adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "X-Borg",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "X-Borg adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Yi Sun-Shin",
+    role: "Assassin",
+    subtitle: "Assassin/Marksman Hybrid",
+    emoji: "⚔️",
+
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Yi Sun-Shin adalah assassin yang mengandalkan mobilitas tinggi dan burst damage untuk memburu target prioritas.",
+
+    skills: [
+      "High Mobility",
+      "Burst",
+      "Chase",
+      "Escape"
+    ],
+
+    tips: [
+      "Perhatikan resource sebelum masuk fight.",
+      "Jangan masuk ketika crowd control lawan masih tersedia.",
+      "Cari angle dari sisi yang tidak terduga."
+    ]
+  },
+
+
+  {
+    name: "Yin",
+    role: "Fighter",
+    subtitle: "Fighter/Assassin Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Yin adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Yu Zhong",
+    role: "Fighter",
+    subtitle: "Battle-Tested Fighter",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Yu Zhong adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  },
+
+
+  {
+    name: "Yve",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Yve adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Zetian",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Zetian adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Zhask",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Zhask adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Zhuxin",
+    role: "Mage",
+    subtitle: "Elemental Mage",
+    emoji: "⚡",
+
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Zhuxin adalah mage yang mengandalkan kombinasi skill untuk memberikan damage besar dalam waktu singkat.",
+
+    skills: [
+      "Burst Damage",
+      "Crowd Control",
+      "Pick-off",
+      "Zone Control"
+    ],
+
+    tips: [
+      "Simpan combo untuk target prioritas.",
+      "Jangan terlalu maju tanpa vision.",
+      "Manfaatkan semak untuk membuat pressure."
+    ]
+  },
+
+
+  {
+    name: "Zilong",
+    role: "Fighter",
+    subtitle: "Fighter/Assassin Hybrid",
+    emoji: "🥋",
+
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+
+    description:
+      "Zilong adalah fighter dengan mobilitas dan damage berimbang yang dapat digunakan untuk mengganggu positioning lawan.",
+
+    skills: [
+      "Mobility",
+      "Crowd Control",
+      "Pick-off",
+      "Outplay"
+    ],
+
+    tips: [
+      "Jangan membuang mobility tanpa tujuan.",
+      "Cari target penting yang keluar dari formasi.",
+      "Latih timing skill secara konsisten."
+    ]
+  }
+
+
+];  
+  
+  
+/* =====================================================  
+   LOGIN  
+===================================================== */  
+  
+const loginPage =  
+  document.getElementById("loginPage");  
+  
+const app =  
+  document.getElementById("app");  
+  
+const loginForm =  
+  document.getElementById("loginForm");  
+  
+const loginMessage =  
+  document.getElementById("loginMessage");  
+  
+  
+function showApp() {  
+  
+  loginPage.style.display = "none";  
+  
+  app.style.display = "block";  
+  
+  document.body.classList.add("loaded");  
+  
+  window.scrollTo({  
+    top: 0,  
+    behavior: "instant"  
+  });  
+  
+  renderHeroes();  
+  
+  loadTraining();  
+  
+}  
+  
+  
+function showLogin() {  
+  
+  app.style.display = "none";  
+  
+  loginPage.style.display = "flex";  
+  
+}  
+  
+  
+loginForm.addEventListener(  
+  "submit",  
+  function(event) {  
+  
+    event.preventDefault();  
+  
+    const username =  
+      document.getElementById("username")  
+        .value  
+        .trim();  
+  
+    const password =  
+      document.getElementById("password")  
+        .value;  
+  
+    if (  
+      username === "admin123" &&  
+      password === "admin123"  
+    ) {  
+  
+      localStorage.setItem(  
+        "lodLoggedIn",  
+        "true"  
+      );  
+  
+      loginMessage.textContent =  
+        "Login berhasil. Loading Academy...";  
+  
+      loginMessage.style.color =  
+        "var(--green)";  
+  
+      setTimeout(  
+        showApp,  
+        500  
+      );  
+  
+    } else {  
+  
+      loginMessage.textContent =  
+        "Username atau password salah.";  
+  
+      loginMessage.style.color =  
+        "var(--red)";  
+  
+    }  
+  
+  }  
+);  
+  
+  
+/* =====================================================  
+   LOGOUT  
+===================================================== */  
+  
+document  
+  .getElementById("logoutBtn")  
+  .addEventListener(  
+    "click",  
+    function() {  
+  
+      localStorage.removeItem(  
+        "lodLoggedIn"  
+      );  
+  
+      showLogin();  
+  
+      loginForm.reset();  
+  
+      loginMessage.textContent = "";  
+  
+      window.scrollTo({  
+        top: 0,  
+        behavior: "instant"  
+      });  
+  
+    }  
+  );  
+  
+  
+/* =====================================================  
+   RENDER HEROES  
+===================================================== */  
+  
+const heroGrid =  
+  document.getElementById("heroGrid");  
+  
+  
+function renderHeroes(  
+  filter = "all",  
+  search = ""  
+) {  
+  
+  const query =  
+    search  
+      .toLowerCase()  
+      .trim();  
+  
+  const filtered =  
+    heroes.filter(hero => {  
+  
+      const roleMatch =  
+        filter === "all" ||  
+        hero.role === filter;  
+  
+      const searchMatch =  
+        !query ||  
+        hero.name  
+          .toLowerCase()  
+          .includes(query) ||  
+        hero.role  
+          .toLowerCase()  
+          .includes(query) ||  
+        hero.subtitle  
+          .toLowerCase()  
+          .includes(query);  
+  
+      return roleMatch && searchMatch;  
+  
+    });  
+  
+  
+  if (!filtered.length) {  
+  
+    heroGrid.innerHTML = `  
+      <div class="no-result">  
+        <strong>HERO NOT FOUND</strong>  
+        Coba gunakan kata pencarian lain.  
+      </div>  
+    `;  
+  
+    return;  
+  }  
+  
+  
+  heroGrid.innerHTML =  
+    filtered.map(  
+      (hero, index) => `  
+  
+        <article  
+          class="hero-card"  
+          data-hero="${hero.name}"  
+        >  
+  
+          <div class="hero-image">  
+  
+            <div class="hero-fallback">  
+              ${hero.emoji}  
+            </div>  
+  
+            <img  
+              src="${hero.image}"  
+              alt="${hero.name}"  
+              loading="lazy"  
+              onerror="this.style.display='none'"  
+            >  
+  
+            <div class="hero-role">  
+              ${hero.role.toUpperCase()}  
+            </div>  
+  
+          </div>  
+  
+  
+          <div class="hero-info">  
+  
+            <h3>  
+              ${hero.name}  
+            </h3>  
+  
+            <div class="hero-subtitle">  
+              ${hero.subtitle}  
+            </div>  
+  
+            <p>  
+              ${hero.description}  
+            </p>  
+  
+            <div class="skills">  
+  
+              ${hero.skills  
+                .map(  
+                  skill =>  
+                    `<span class="skill">  
+                      ${skill}  
+                    </span>`  
+                )  
+                .join("")  
+              }  
+  
+            </div>  
+  
+  
+            <div class="combo">  
+  
+              💡  
+              <strong>Tip:</strong>  
+              Pelajari positioning dan timing  
+              sebelum mengejar mekanik kompleks.  
+  
+            </div>  
+  
+          </div>  
+  
+        </article>  
+  
+      `  
+    ).join("");  
+  
+  
+  document  
+    .querySelectorAll(".hero-card")  
+    .forEach(card => {  
+  
+      card.addEventListener(  
+        "click",  
+        () => {  
+  
+          const heroName =  
+            card.dataset.hero;  
+  
+          openHeroModal(heroName);  
+  
+        }  
+      );  
+  
+    });  
+  
+}  
+  
+  
+/* =====================================================  
+   HERO FILTER  
+===================================================== */  
+  
+let currentFilter = "all";  
+  
+  
+document  
+  .querySelectorAll(".filter-btn")  
+  .forEach(button => {  
+  
+    button.addEventListener(  
+      "click",  
+      function() {  
+  
+        document  
+          .querySelectorAll(".filter-btn")  
+          .forEach(btn =>  
+            btn.classList.remove("active")  
+          );  
+  
+        this.classList.add("active");  
+  
+        currentFilter =  
+          this.dataset.filter;  
+  
+        const search =  
+          document.getElementById(  
+            "heroSearch"  
+          ).value;  
+  
+        renderHeroes(  
+          currentFilter,  
+          search  
+        );  
+  
+      }  
+    );  
+  
+  });  
+  
+  
+/* =====================================================  
+   HERO SEARCH  
+===================================================== */  
+  
+document  
+  .getElementById("heroSearch")  
+  .addEventListener(  
+    "input",  
+    function() {  
+  
+      renderHeroes(  
+        currentFilter,  
+        this.value  
+      );  
+  
+    }  
+  );  
+  
+  
+/* =====================================================  
+   HERO MODAL  
+===================================================== */  
+  
+const modal =  
+  document.getElementById("heroModal");  
+  
+const modalImage =  
+  document.getElementById("modalImage");  
+  
+const modalName =  
+  document.getElementById("modalName");  
+  
+const modalRole =  
+  document.getElementById("modalRole");  
+  
+const modalDescription =  
+  document.getElementById(  
+    "modalDescription"  
+  );  
+  
+const modalSkills =  
+  document.getElementById(  
+    "modalSkills"  
+  );  
+  
+const modalTips =  
+  document.getElementById(  
+    "modalTips"  
+  );  
+  
+  
+function openHeroModal(name) {  
+  
+  const hero =  
+    heroes.find(  
+      item => item.name === name  
+    );  
+  
+  if (!hero) return;  
+  
+  
+  modalImage.src =  
+    hero.image;  
+  
+  modalImage.alt =  
+    hero.name;  
+  
+  modalName.textContent =  
+    hero.name;  
+  
+  modalRole.textContent =  
+    hero.role;  
+  
+  modalDescription.textContent =  
+    hero.description;  
+  
+  
+  modalSkills.innerHTML =  
+    hero.skills  
+      .map(  
+        skill =>  
+          `<li>⚡ ${skill}</li>`  
+      )  
+      .join("");  
+  
+  
+  modalTips.innerHTML =  
+    hero.tips  
+      .map(  
+        tip =>  
+          `<li>✓ ${tip}</li>`  
+      )  
+      .join("");  
+  
+  
+  modal.classList.add("active");  
+  
+  document.body.style.overflow =  
+    "hidden";  
+  
+}  
+  
+  
+function closeModal() {  
+  
+  modal.classList.remove(  
+    "active"  
+  );  
+  
+  document.body.style.overflow =  
+    "";  
+  
+}  
+  
+  
+document  
+  .getElementById("modalClose")  
+  .addEventListener(  
+    "click",  
+    closeModal  
+  );  
+  
+  
+modal.addEventListener(  
+  "click",  
+  function(event) {  
+  
+    if (  
+      event.target === modal  
+    ) {  
+      closeModal();  
+    }  
+  
+  }  
+);  
+  
+  
+document.addEventListener(  
+  "keydown",  
+  function(event) {  
+  
+    if (  
+      event.key === "Escape"  
+    ) {  
+      closeModal();  
+    }  
+  
+  }  
+);  
+  
+  
+/* =====================================================  
+   MACRO / MICRO TABS  
+===================================================== */  
+  
+document  
+  .querySelectorAll(".mm-tab")  
+  .forEach(tab => {  
+  
+    tab.addEventListener(  
+      "click",  
+      function() {  
+  
+        const target =  
+          this.dataset.tab;  
+  
+        document  
+          .querySelectorAll(".mm-tab")  
+          .forEach(item =>  
+            item.classList.remove(  
+              "active"  
+            )  
+          );  
+  
+        document  
+          .querySelectorAll(".mm-content")  
+          .forEach(content =>  
+            content.classList.remove(  
+              "active"  
+            )  
+          );  
+  
+        this.classList.add(  
+          "active"  
+        );  
+  
+        document  
+          .getElementById(target)  
+          .classList.add(  
+            "active"  
+          );  
+  
+      }  
+    );  
+  
+  });  
+  
+  
+/* =====================================================  
+   TRAINING CHECKLIST  
+===================================================== */  
+  
+const trainingChecks =  
+  document.querySelectorAll(  
+    ".training-check"  
+  );  
+  
+const progressBar =  
+  document.getElementById(  
+    "progressBar"  
+  );  
+  
+const progressText =  
+  document.getElementById(  
+    "progressText"  
+  );  
+  
+  
+function updateProgress() {  
+  
+  const total =  
+    trainingChecks.length;  
+  
+  const completed =  
+    [...trainingChecks]  
+      .filter(  
+        checkbox => checkbox.checked  
+      )  
+      .length;  
+  
+  const percentage =  
+    total === 0  
+      ? 0  
+      : Math.round(  
+          completed / total * 100  
+        );  
+  
+  
+  progressBar.style.width =  
+    `${percentage}%`;  
+  
+  progressText.textContent =  
+    `${percentage}%`;  
+  
+  
+  localStorage.setItem(  
+    "lodTraining",  
+    JSON.stringify(  
+      [...trainingChecks]  
+        .map(  
+          checkbox =>  
+            checkbox.checked  
+        )  
+    )  
+  );  
+  
+}  
+  
+  
+function loadTraining() {  
+  
+  const saved =  
+    localStorage.getItem(  
+      "lodTraining"  
+    );  
+  
+  if (!saved) {  
+  
+    updateProgress();  
+  
+    return;  
+  
+  }  
+  
+  
+  try {  
+  
+    const states =  
+      JSON.parse(saved);  
+  
+    trainingChecks  
+      .forEach(  
+        (checkbox, index) => {  
+  
+          checkbox.checked =  
+            Boolean(  
+              states[index]  
+            );  
+  
+        }  
+      );  
+  
+  } catch(error) {  
+  
+    console.warn(  
+      "Training data tidak valid."  
+    );  
+  
+  }  
+  
+  
+  updateProgress();  
+  
+}  
+  
+  
+trainingChecks.forEach(  
+  checkbox => {  
+  
+    checkbox.addEventListener(  
+      "change",  
+      function() {  
+  
+        updateProgress();  
+  
+        showToast(  
+          this.checked  
+            ? "Training selesai ✓"  
+            : "Training dibatalkan"  
+        );  
+  
+      }  
+    );  
+  
+  }  
+);  
+  
+  
+/* =====================================================  
+   SMOOTH SCROLL  
+===================================================== */  
+  
+function scrollToSection(  
+  id  
+) {  
+  
+  const section =  
+    document.getElementById(id);  
+  
+  if (!section) return;  
+  
+  section.scrollIntoView({  
+    behavior: "smooth"  
+  });  
+  
+}  
+  
+  
+/* =====================================================  
+   NAVIGATION  
+===================================================== */  
+  
+document  
+  .querySelectorAll(  
+    '.nav-menu a[href^="#"]'  
+  )  
+  .forEach(link => {  
+  
+    link.addEventListener(  
+      "click",  
+      function(event) {  
+  
+        event.preventDefault();  
+  
+        const target =  
+          this.getAttribute("href")  
+            .substring(1);  
+  
+        scrollToSection(  
+          target  
+        );  
+  
+      }  
+    );  
+  
+  });  
+  
+  
+/* =====================================================  
+   PARTICLES  
+===================================================== */  
+  
+const particles =  
+  document.getElementById(  
+    "particles"  
+  );  
+  
+  
+function createParticles() {  
+  
+  const count =  
+    window.innerWidth < 600  
+      ? 25  
+      : 55;  
+  
+  
+  for (  
+    let i = 0;  
+    i < count;  
+    i++  
+  ) {  
+  
+    const particle =  
+      document.createElement(  
+        "div"  
+      );  
+  
+    particle.className =  
+      "particle";  
+  
+  
+    particle.style.left =  
+      `${Math.random() * 100}%`;  
+  
+    particle.style.animationDuration =  
+      `${8 + Math.random() * 15}s`;  
+  
+    particle.style.animationDelay =  
+      `${Math.random() * -15}s`;  
+  
+    particle.style.opacity =  
+      `${.15 + Math.random() * .55}`;  
+  
+    const size =  
+      1 + Math.random() * 3;  
+  
+    particle.style.width =  
+      `${size}px`;  
+  
+    particle.style.height =  
+      `${size}px`;  
+  
+  
+    if (Math.random() > .75) {  
+  
+      particle.style.background =  
+        "var(--purple)";  
+  
+      particle.style.boxShadow =  
+        "0 0 15px var(--purple)";  
+  
+    }  
+  
+  
+    particles.appendChild(  
+      particle  
+    );  
+  
+  }  
+  
+}  
+  
+  
+createParticles();  
+  
+  
+/* =====================================================  
+   TOAST  
+===================================================== */  
+  
+const toast =  
+  document.getElementById(  
+    "toast"  
+  );  
+  
+let toastTimer;  
+  
+  
+function showToast(message) {  
+  
+  toast.textContent =  
+    message;  
+  
+  toast.classList.add(  
+    "show"  
+  );  
+  
+  clearTimeout(  
+    toastTimer  
+  );  
+  
+  toastTimer =  
+    setTimeout(  
+      () => {  
+  
+        toast.classList.remove(  
+          "show"  
+        );  
+  
+      },  
+      2200  
+    );  
+  
+}  
+  
+  
+/* =====================================================  
+   BACK TO TOP  
+===================================================== */  
+  
+const backTop =  
+  document.getElementById(  
+    "backTop"  
+  );  
+  
+  
+window.addEventListener(  
+  "scroll",  
+  function() {  
+  
+    if (  
+      window.scrollY > 500  
+    ) {  
+  
+      backTop.classList.add(  
+        "show"  
+      );  
+  
+    } else {  
+  
+      backTop.classList.remove(  
+        "show"  
+      );  
+  
+    }  
+  
+  }  
+);  
+  
+  
+backTop.addEventListener(  
+  "click",  
+  function() {  
+  
+    window.scrollTo({  
+      top: 0,  
+      behavior: "smooth"  
+    });  
+  
+  }  
+);  
+  
+  
+/* =====================================================  
+   INITIAL SESSION  
+===================================================== */  
+  
+document.addEventListener(  
+  "DOMContentLoaded",  
+  function() {  
+  
+    const loggedIn =  
+      localStorage.getItem(  
+        "lodLoggedIn"  
+      );  
+  
+    if (  
+      loggedIn === "true"  
+    ) {  
+  
+      showApp();  
+  
+    } else {  
+  
+      loginPage.style.display =  
+        "flex";  
+  
+      app.style.display =  
+        "none";  
+  
+    }  
+  
+  }  
+);  
+  
+  
+/* =====================================================  
+   IMAGE ERROR HANDLING  
+===================================================== */  
+  
+document.addEventListener(  
+  "error",  
+  function(event) {  
+  
+    if (  
+      event.target.tagName === "IMG"  
+    ) {  
+  
+      event.target.style.display =  
+        "none";  
+  
+    }  
+  
+  },  
+  true  
+);  
+  
+</script>  </body>  
+</html>
